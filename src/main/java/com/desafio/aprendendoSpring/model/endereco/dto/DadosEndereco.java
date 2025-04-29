@@ -1,6 +1,6 @@
-package com.desafio.aprendendoSpring.model.dto;
+package com.desafio.aprendendoSpring.model.endereco.dto;
 
-import com.desafio.aprendendoSpring.model.Endereco;
+import com.desafio.aprendendoSpring.model.endereco.Endereco;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 

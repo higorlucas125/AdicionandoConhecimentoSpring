@@ -1,6 +1,8 @@
-package com.desafio.aprendendoSpring.model.dto;
+package com.desafio.aprendendoSpring.model.medico.dto;
 
-import com.desafio.aprendendoSpring.model.Medico;
+import com.desafio.aprendendoSpring.model.endereco.dto.DadosEndereco;
+import com.desafio.aprendendoSpring.model.enums.Especialidade;
+import com.desafio.aprendendoSpring.model.medico.Medico;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

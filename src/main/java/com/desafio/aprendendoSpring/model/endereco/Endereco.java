@@ -1,7 +1,7 @@
-package com.desafio.aprendendoSpring.model;
+package com.desafio.aprendendoSpring.model.endereco;
 
 
-import com.desafio.aprendendoSpring.model.dto.DadosEndereco;
+import com.desafio.aprendendoSpring.model.endereco.dto.DadosEndereco;
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

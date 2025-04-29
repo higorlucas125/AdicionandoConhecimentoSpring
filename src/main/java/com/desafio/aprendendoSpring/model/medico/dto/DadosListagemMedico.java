@@ -1,6 +1,7 @@
-package com.desafio.aprendendoSpring.model.dto;
+package com.desafio.aprendendoSpring.model.medico.dto;
 
-import com.desafio.aprendendoSpring.model.Medico;
+import com.desafio.aprendendoSpring.model.enums.Especialidade;
+import com.desafio.aprendendoSpring.model.medico.Medico;
 
 public record DadosListagemMedico(Long id, String nome, String email, String crm, Especialidade especialidade) {
 

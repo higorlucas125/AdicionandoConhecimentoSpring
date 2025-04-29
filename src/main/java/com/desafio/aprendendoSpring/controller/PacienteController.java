@@ -1,18 +1,48 @@
 package com.desafio.aprendendoSpring.controller;
 
 
-import com.desafio.aprendendoSpring.model.dto.DadosCadastroPaciente;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.desafio.aprendendoSpring.model.paciente.Paciente;
+import com.desafio.aprendendoSpring.model.paciente.dto.DadosAtualizacaoPaciente;
+import com.desafio.aprendendoSpring.model.paciente.dto.DadosCadastroPaciente;
+import com.desafio.aprendendoSpring.model.paciente.dto.DadosListagemPaciente;
+import com.desafio.aprendendoSpring.repository.PacienteRepository;
+import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/pacientes")
 public class PacienteController {
 
+    @Autowired
+    private PacienteRepository repository;
+
     @PostMapping
-    public void cadastrar(@RequestBody DadosCadastroPaciente dados) {
-        System.out.println("dados recebido: " +dados);
+    @Transactional
+    public void cadastrar(@RequestBody @Valid DadosCadastroPaciente dados) {
+        repository.save(new Paciente(dados));
+    }
+
+    @GetMapping
+    public Page<DadosListagemPaciente> listar(@PageableDefault(size = 10, sort = {"nome"}) Pageable paginacao) {
+        return repository.findAllByAtivoTrue(paginacao).map(DadosListagemPaciente::new);
+    }
+
+    @PutMapping
+    @Transactional
+    public void atualizar(@RequestBody @Valid DadosAtualizacaoPaciente dados) {
+        var paciente = repository.getReferenceById(dados.id());
+        paciente.atualizarInformacoes(dados);
+    }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public void excluir(@PathVariable Long id) {
+        var paciente = repository.getReferenceById(id);
+        paciente.excluir();
     }
 }

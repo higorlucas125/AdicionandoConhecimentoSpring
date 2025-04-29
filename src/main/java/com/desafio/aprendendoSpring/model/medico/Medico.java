@@ -1,9 +1,10 @@
-package com.desafio.aprendendoSpring.model;
+package com.desafio.aprendendoSpring.model.medico;
 
 
-import com.desafio.aprendendoSpring.model.dto.DadosAtualizarMedico;
-import com.desafio.aprendendoSpring.model.dto.DadosCadastroMedico;
-import com.desafio.aprendendoSpring.model.dto.Especialidade;
+import com.desafio.aprendendoSpring.model.endereco.Endereco;
+import com.desafio.aprendendoSpring.model.medico.dto.DadosAtualizarMedico;
+import com.desafio.aprendendoSpring.model.medico.dto.DadosCadastroMedico;
+import com.desafio.aprendendoSpring.model.enums.Especialidade;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;

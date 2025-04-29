@@ -1,4 +1,4 @@
-package com.desafio.aprendendoSpring.model.dto;
+package com.desafio.aprendendoSpring.model.enums;
 
 public enum Especialidade {
 
