@@ -27,3 +27,9 @@ replay_pid*
 .idea
 
 .env
+
+# igrnore mcp
+mcp.log.*
+
+target/*
+.cursorrules
