@@ -14,15 +14,30 @@ import java.time.LocalDateTime;
 public interface MedicoRepository extends JpaRepository<Medico, Long> {
     Page<Medico> findAllByStatusTrue(Pageable pageable);
 
-    @Query(value = """ 
-    SELECT * FROM medicos m
-        WHERE m.especialidade = :especialidade
-        AND m.status = 1
-        AND m.id NOT IN (
-            SELECT c.medico_id FROM consultas c
-            WHERE c.data = :dateTime
-        )
-        ORDER BY RAND()
-        LIMIT 1""", nativeQuery = true)
-    Medico escolherMedicoAleatorioLivreNaData(Especialidade especialidade, @NotNull @Future LocalDateTime dateTime);
+    @Query(value = """
+            select m.* from medicos m
+            where
+            m.status = 1
+            and
+            m.especialidade = :especialidade
+            and
+            m.id not in(
+                select c.medico_id from consultas c
+                where
+                c.data = :data
+                and
+                c.motivo_cancelamento is null
+            )
+            order by rand()
+            limit 1
+        """, nativeQuery = true)
+    Medico escolherMedicoAleatorioLivreNaData(Especialidade especialidade, LocalDateTime data);
+
+    @Query(value = """
+            select m.status
+            from Medico m
+            where
+            m.id = :id
+            """,nativeQuery = true)
+    Boolean findAtivoById(Long id);
 }
