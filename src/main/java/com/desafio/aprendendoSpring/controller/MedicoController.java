@@ -6,6 +6,7 @@ import com.desafio.aprendendoSpring.model.medico.dto.DadosCadastroMedico;
 import com.desafio.aprendendoSpring.model.medico.dto.DadosDetalhamentoMedico;
 import com.desafio.aprendendoSpring.model.medico.dto.DadosListagemMedico;
 import com.desafio.aprendendoSpring.repository.MedicoRepository;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @RequestMapping("/medicos")
+@SecurityRequirement(name = "bearer-key")
 public class MedicoController {
 
 
